@@ -133,5 +133,5 @@ print(res.content)
 #   st.code("Hello Hiring Manager, I'm from ABC",language='markdown')
 #
 
-!streamlit run app.py
+#!streamlit run app.py
 
