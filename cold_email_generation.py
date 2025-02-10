@@ -7,11 +7,10 @@ Original file is located at
     https://colab.research.google.com/drive/1AKsgBAJXezkS5DOzaitbMsk9QcVV2XqM
 """
 
-#!pip install langchain
-
-#!pip install langchain-groq
-
 from langchain_groq import ChatGroq
+import pandas as pd
+import os
+import uuid
 
 llm = ChatGroq(
     model="llama-3.1-70b-versatile",
@@ -21,8 +20,6 @@ llm = ChatGroq(
 
 response=llm.invoke("The first person to land on the moon was...")
 print(response.content)
-
-#!pip install chromadb
 
 import chromadb
 client=chromadb.Client()
@@ -44,8 +41,6 @@ results=collection.query(
 n_results=2
 )
 results
-
-#!pip install -qU langchain_community beautifulsoup4
 
 from langchain_community.document_loaders import WebBaseLoader
 loader = WebBaseLoader('https://jobs.nike.com/job/R-38694?from=job%20search%20funnel')
@@ -76,11 +71,9 @@ json_res
 
 type(json_res)
 
-import pandas as pd
 df=pd.read_csv('/content/drive/MyDrive/my_portfolio.csv')
 df.head()
 
-import uuid
 client = chromadb.PersistentClient('vectorstore')
 collection = client.get_or_create_collection(name='portfolio')
 
@@ -118,20 +111,3 @@ prompt_email = PromptTemplate.from_template(
 chain_email = prompt_email | llm
 res=chain_email.invoke({'job_description':str(job),'link_list':links})
 print(res.content)
-
-#!pip install streamlit
-
-# Commented out IPython magic to ensure Python compatibility.
-# %%writefile app.py
-# import streamlit as st
-# 
-# st.title("Cold Email Generation")
-# url_input = st.text_input("Enter the URL",value='https://jobs.nike.com/job/R-38694?from=job%20search%20funnel')
-# submit_button = st.button("Submit")
-# 
-# if submit_button:
-#   st.code("Hello Hiring Manager, I'm from ABC",language='markdown')
-#
-
-#!streamlit run app.py
-
