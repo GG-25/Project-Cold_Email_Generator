@@ -23,7 +23,6 @@ llm = ChatGroq(
 response=llm.invoke("The first person to land on the moon was...")
 print(response.content)
 
-
 client=chromadb.Client()
 collection=client.create_collection("my_collection")
 
